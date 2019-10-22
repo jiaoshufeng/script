@@ -53,7 +53,6 @@ def dele():
     e_port.delete(0, END)
     info['text'] = ''
 
-# 第一行，用户名标签及输入框
 message = Label(root, text='端口扫描工具端口（1-65535）', font=ft1).grid()
 message2 = Label(root, text='请在英文输入法下进行输入', font=ft1).grid()
 ip = Label(root, text='IP地址：', font=ft3)
@@ -61,7 +60,6 @@ ip.grid(row=2, sticky=W)
 hostip = Entry(root, font=ft3)
 hostip.grid(row=2, column=1, sticky=W)
 message3 = Label(root, text='', font=ft1).grid()
-# 第二行，密码标签及输入框
 start_port = Label(root, text='开始端口：', font=ft3)
 start_port.grid(row=4, sticky=W)
 s_port = Entry(root, font=ft3)
