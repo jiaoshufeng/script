@@ -30,16 +30,19 @@ class INFO(information):
                 information.list.append("IP地址: %s" % address.IPAddress[0])
                 information.list.append("MAC地址: %s" % address.MACAddress)
         for BIOS in information.w.Win32_BIOS():
+            information.list.append("主板厂商: %s" % BIOS.Manufacturer)
+            information.list.append("主板名称: %s" % BIOS.Name)
             information.list.append("使用日期: %s" % BIOS.ReleaseDate)
-            information.list.append("主板型号: %s" % BIOS.SerialNumber)
+            information.list.append("主板SN号: %s" % BIOS.SerialNumber)
         for processor in information.w.Win32_Processor():
             information.list.append("CPU型号: %s" % processor.Name.strip())
+            information.list.append("CPU核数: %s" % processor.NumberOfLogicalProcessors)
         for memModule in information.w.Win32_PhysicalMemory():
             totalMemSize = int(memModule.Capacity)
             information.list.append("内存厂商: %s" % memModule.Manufacturer)
             information.list.append("内存型号: %s" % memModule.PartNumber)
             information.list.append("内存大小: %.2fGB" % (totalMemSize / 1024 ** 3))
-        for disk in information.w.Win32_DiskDrive(InterfaceType="IDE"):
+        for disk in information.w.Win32_DiskDrive():
             diskSize = int(disk.size)
             information.list.append("磁盘名称: %s" % disk.Caption)
             information.list.append("磁盘大小: %.2fGB" % (diskSize / 1024 ** 3))
